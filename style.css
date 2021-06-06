@@ -1,0 +1,99 @@
+form {
+    background-color: blue;
+    position: relative;
+    height: 4rem;
+    overflow: hidden;
+}
+
+form input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    padding-top: 1rem;
+    outline: none;
+}
+
+form label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-bottom: 1px solid black;
+}
+
+form label::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 100%;
+    width: 100%;
+    border-bottom: 3px solid #5fa8d3;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.content-name {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+form input:focus+.todo-name .content-name, form input:valid+.todo-name .content-name {
+    transform: translateY(-150%);
+    color: #5fa8d3;
+}
+
+form input:focus+.todo-name::after, form input:valid+.todo-name::after {
+    transform: translateX(0%);
+}
+
+.container{
+    height: 100vh;
+}
+
+.nav-link{
+    color: #080808;
+}
+
+.nav-link.active{
+    color: red !important;
+}
+
+#todo-form{
+    height: 70vh;
+}
+
+ul li{
+    list-style: none;
+}
+
+.custom-menu {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #FFF;
+    color: #333;
+    border-radius: 5px;
+    padding: 0;
+}
+
+/* Each of the items in the list */
+.custom-menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+    list-style-type: none;
+    transition: all .3s ease;
+    user-select: none;
+}
+
+.custom-menu li:hover {
+    background-color: #DEF;
+}
