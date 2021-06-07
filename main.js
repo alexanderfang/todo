@@ -19,6 +19,7 @@ function formSubmit(event){
     event.preventDefault()
     let input = document.getElementById('todo-input')
     let list = document.getElementById('todo-list')
+    showToast(`${input.value} added`)
 
     data.push(input.value)
     input.value = ""
@@ -30,6 +31,7 @@ function formSubmit(event){
 function todoListSubmit(event, idx){
     event.preventDefault
     data.push(done[idx])
+    showToast(`${done[idx]} undone`)
     done.splice(idx, 1)
 
     refreshList();
@@ -38,6 +40,7 @@ function todoListSubmit(event, idx){
 function doneListSubmit(event, idx){
     event.preventDefault
     done.push(data[idx])
+    showToast(`${data[idx]} done`)
     data.splice(idx, 1)
 
     refreshList();
@@ -107,8 +110,10 @@ function showMenu(e, object, res){
     node.setAttribute("data-action","Delete")
     node.addEventListener('click', function(){
         if(res=="todo"){
+            showToast(`${data[id]} deleted`)
             data.splice(id, 1)
         }else{
+            showToast(`${done[id]} deleted`)
             done.splice(id, 1)
         }
         refreshList()
@@ -117,4 +122,23 @@ function showMenu(e, object, res){
     menu.appendChild(node)
 
     menu.style.display = "block"
+}
+
+function showToast(message){
+    var dom = `<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="me-auto">Too Doo</strong>
+                        <small class="text-muted">just now</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                </div>`
+    console.log($('.toast-container .toast').length)
+    setTimeout(function(){
+        $('.toast').first().remove();
+      }, 3000);
+    $('.toast-container').append(dom);
+    $('.toast').toast('show');
 }
