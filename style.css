@@ -69,12 +69,18 @@ form input:focus+.todo-name::after, form input:valid+.todo-name::after {
 
 #todo-list, #done-list{
     height: 50vh;
+    width: inherit;
     overflow: hidden;
     overflow-y: scroll;
 }
 
 #todo-list li, #done-list li{
     list-style: none;
+}
+
+.todo-list-item label div, .done-list-item label div{
+    max-width: 90%;
+    overflow-wrap: break-word;
 }
 
 .custom-menu {
